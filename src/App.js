@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Information from "./components/Information";
 import Favorite from "./components/Favorite";
-import Watch from "./components/Watch"
+import Watch from "./components/Watch";
 const App = () => {
   return (
     <Router>
@@ -30,16 +30,16 @@ const App = () => {
           render={(props) => (
             <>
               <Header />
-             <Favorite/>
+              <Favorite />
             </>
           )}
         />
-          <Route
+        <Route
           path="/watched"
           render={(props) => (
             <>
               <Header />
-             <Watch/>
+              <Watch />
             </>
           )}
         />

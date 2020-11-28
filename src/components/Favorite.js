@@ -5,7 +5,6 @@ const Favorite = () => {
 
   const deleteMovie = (props) => {
     // console.log('movie : ',props.target.id);
-
     let index = favorite.findIndex((movie) => movie.id == props.target.id);
     // console.log('index',index);
     let listmovie = JSON.parse(localStorage.getItem("favourites"));
@@ -18,22 +17,32 @@ const Favorite = () => {
     setFavorite(JSON.parse(localStorage.getItem("favourites")));
   }, []);
 
-  const movie = favorite.map((movie) => (
-    <div className="movie-fav">
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-      />
-      <div className="movie-info">
-        <h3>{movie.title}</h3>
-        <button onClick={deleteMovie} id={movie.id}>
-          {" "}
-          Remove
-        </button>
-      </div>
+  return (
+    <div className="movie-container">
+      {favorite ? (
+        favorite.map((movie) => (
+          <div className="movie-fav">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <div className="movie-info">
+              <h3>{movie.title}</h3>
+              <button
+                className="btn-remove"
+                onClick={deleteMovie}
+                id={movie.id}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        ))
+      ) : (
+        <h2 className="text">No Favorite Movies</h2>
+      )}
     </div>
-  ));
-  return <div className="movie-container">{movie}</div>;
+  );
 };
 
 export default Favorite;

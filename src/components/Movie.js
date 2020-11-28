@@ -1,7 +1,7 @@
 import React from "react";
 
 const Movie = (props) => {
-  console.log(props.data);
+  // console.log(props.data);
   const { title, poster_path, overview, vote_average } = props.data;
 
   return (

@@ -24,8 +24,8 @@ const PopUp = (props) => {
     <div className="popup-box">
       <div className="box">
         <span onClick={handleClick}>&times; </span>
-        <p>Are you sure!</p>
-        <button className onClick={addFavorite}>
+        <p>Are you sure to add !</p>
+        <button className="popup_btn" onClick={addFavorite}>
           Yes
         </button>
       </div>
