@@ -7,8 +7,12 @@ const Header = () => {
 
  
   useEffect(() => {
-    setNumberFav(JSON.parse(localStorage.getItem("favourites")).length) 
-    setNumberWatch(JSON.parse(localStorage.getItem("watch")).length )
+    if(localStorage.getItem("favourites")){
+      setNumberFav(JSON.parse(localStorage.getItem("favourites")).length) 
+     }
+     if(localStorage.getItem("watch")){
+      setNumberWatch(JSON.parse(localStorage.getItem("watch")).length )
+     }
   });
 
 
