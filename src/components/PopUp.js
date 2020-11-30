@@ -14,10 +14,20 @@ const PopUp = (props) => {
       localStorage.setItem("favourites", JSON.stringify(movie));
     } else {
       const movies = JSON.parse(localStorage.getItem("favourites"));
-      movies.push(props.info);
-      localStorage.setItem("favourites", JSON.stringify(movies));
+      let foundMovie = [];
+      movies.forEach((movie, i) => {
+        if (movie.id === props.info.id) {
+          return foundMovie.push(i);
+        }
+      });
+
+      if (!foundMovie.length) {
+        movies.push(props.info);
+        localStorage.setItem("favourites", JSON.stringify(movies));
+      }
     }
     setFavorite(JSON.parse(localStorage.getItem("favourites")));
+    props.toggle();
   };
 
   return (

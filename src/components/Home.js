@@ -32,8 +32,10 @@ const Home = () => {
         .then((data) => {
           if (!data.errors) {
             setMovies(data.results);
-          } else {
-            console.log("data.errors :", data.errors);
+          } 
+          
+          else {
+            // console.log("data.errors :", data.errors);
             getmovie();
           }
         });
@@ -78,9 +80,14 @@ const Home = () => {
         />
       </div>
       <div className="movie-container">{movie}</div>
+      
+      
+  
+     
+     {movies.length?(
       <div className="load_btn">
         <button onClick={loadMore}> Load more ... </button>
-      </div>
+      </div>):(<h2 className="text">No Movies Found</h2>)}
     </div>
   );
 };

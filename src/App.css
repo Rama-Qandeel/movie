@@ -45,6 +45,14 @@ body {
   left: 0;
   right: 0;
   transform: translate(100%);
+
+  overflow: hidden;
+   text-overflow: ellipsis;
+  
+   display: -webkit-box;
+   -webkit-line-clamp: 7; 
+   -webkit-box-orient: vertical;
+
 }
 
 .movie:hover .movie-over {
@@ -235,6 +243,7 @@ header .nav-links li:last-child {
 
 .text {
   text-shadow: 1px 1px 1px rgb(146, 145, 240), 2px 2px 1px rgb(131, 129, 240);
+text-align: center;
 }
 
 .btn-watched,

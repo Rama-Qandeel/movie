@@ -14,10 +14,20 @@ const PopUpWatch = (props) => {
       localStorage.setItem("watch", JSON.stringify(movie));
     } else {
       const movies = JSON.parse(localStorage.getItem("watch"));
-      movies.push(props.info2);
-      localStorage.setItem("watch", JSON.stringify(movies));
+      let foundMovie = [];
+      movies.forEach((movie, i) => {
+        if (movie.id === props.info2.id) {
+          return foundMovie.push(i);
+        }
+      });
+
+      if (!foundMovie.length) {
+        movies.push(props.info);
+        localStorage.setItem("watch", JSON.stringify(movies));
+      }
     }
     setWatch(JSON.parse(localStorage.getItem("watch")));
+    props.toggle2();
   };
 
   return (
