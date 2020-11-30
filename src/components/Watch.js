@@ -21,7 +21,7 @@ const Watch = () => {
     <div className="movie-container">
       {watch ? (
         watch.map((movie) => (
-          <div className="movie-fav">
+          <div className="movie">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PopUp from "./PopUp";
 import PopUpWatch from "./PopUpWatch";
 const Information = (props) => {
   // console.log("props ", props.location.state);
   const [seen, setSeen] = useState(false);
   const [seen2, setSeen2] = useState(false);
-
+  const [add, setAdd] = useState(true);
+  const [btnWatch, setBtnWatch] = useState(true);
   const {
     title,
     poster_path,
@@ -16,6 +17,47 @@ const Information = (props) => {
     popularity,
     original_language,
   } = props.location.state;
+  const addfav = () => {
+    const movies = JSON.parse(localStorage.getItem("favourites"));
+    if(movies){
+    let foundMovie = [];
+    movies.forEach((movie, i) => {
+      if (movie.id === props.location.state.id) {
+        return foundMovie.push(i);
+      }
+    });
+
+    if (!foundMovie.length) {
+      setAdd(true);
+    } else {
+      setAdd(false);
+    }}
+
+  };
+
+  const addWatch=()=>{
+    const movieswatch = JSON.parse(localStorage.getItem("watch"));
+
+    if(movieswatch){
+      let foundMovieWatch = [];
+      movieswatch.forEach((movies, i) => {
+        if (movies.id === props.location.state.id) {
+          return foundMovieWatch.push(i);
+        }
+      });
+  
+      if (!foundMovieWatch.length) {
+        setBtnWatch(true);
+      } else {
+        setBtnWatch(false);
+      }}
+  }
+
+  useEffect(() => {
+    addfav();
+    addWatch();
+  });
+  
 
   const togglePop = () => {
     setSeen(!seen);
@@ -66,15 +108,24 @@ const Information = (props) => {
           </span>
         </div>
         <div className="btn-fav">
-          <div onClick={togglePop}>
-            <button className="btn-add"> Add to Favorite</button>
-          </div>
+          {add ? (
+            <div onClick={togglePop}>
+              <button className="btn-add"> Add to Favorite</button>
+            </div>
+          ) : null}
+
           {seen ? (
             <PopUp toggle={togglePop} info={props.location.state} />
           ) : null}
-          <div className="" onClick={togglePop2}>
+          {btnWatch ? (
+            <div className="" onClick={togglePop2}>
+              <button className="btn-add">Add to WatchList</button>
+            </div>
+          ) : null}
+
+          {/* <div className="" onClick={togglePop2}>
             <button className="btn-add">Add to WatchList</button>
-          </div>
+          </div> */}
           {seen2 ? (
             <PopUpWatch toggle2={togglePop2} info2={props.location.state} />
           ) : null}
@@ -85,4 +136,3 @@ const Information = (props) => {
 };
 
 export default Information;
-

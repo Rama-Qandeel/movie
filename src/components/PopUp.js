@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 const PopUp = (props) => {
   const [favorite, setFavorite] = useState([]);
-
   const handleClick = () => {
     props.toggle();
   };
 
   const addFavorite = () => {
+    
     if (!localStorage.getItem("favourites")) {
       const movie = [];
       movie.push(props.info);
@@ -26,8 +26,10 @@ const PopUp = (props) => {
         localStorage.setItem("favourites", JSON.stringify(movies));
       }
     }
+ 
     setFavorite(JSON.parse(localStorage.getItem("favourites")));
     props.toggle();
+  
   };
 
   return (

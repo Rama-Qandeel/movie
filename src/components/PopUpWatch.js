@@ -22,7 +22,7 @@ const PopUpWatch = (props) => {
       });
 
       if (!foundMovie.length) {
-        movies.push(props.info);
+        movies.push(props.info2);
         localStorage.setItem("watch", JSON.stringify(movies));
       }
     }

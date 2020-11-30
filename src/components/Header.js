@@ -1,7 +1,19 @@
-import React, { Component } from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  let[numberFav,setNumberFav]=useState(0)
+  let[numberWatch,setNumberWatch]=useState(0)
+
+ 
+  useEffect(() => {
+    setNumberFav(JSON.parse(localStorage.getItem("favourites")).length) 
+    setNumberWatch(JSON.parse(localStorage.getItem("watch")).length )
+  });
+
+
+
+
   return (
     <header>
       <div className="container">
@@ -12,18 +24,21 @@ const Header = () => {
                 Home
               </Link>
             </li>
-
+            <button>{numberWatch}</button>
             <li>
               <Link to="/watched" className="btn-header">
                 Watch List
               </Link>
+             
             </li>
-
+           <button>{numberFav}</button>
             <li>
               <Link to="/favorite" className="btn-header">
                 Favorite
               </Link>
+
             </li>
+           
           </ul>
         </div>
       </div>
